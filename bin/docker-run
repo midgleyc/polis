@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# This script runs the server and required components.
+
+SCRIPT_DIR=$(dirname "$0")
+SCRIPT_DIR_PARENT=$(cd "$SCRIPT_DIR" && cd ../ && pwd)
+
+# front with nginx to 5000, see file-server/nginx/*.conf
+
+RUNAS="$(id -u):$(id -g)" RUNUSER="$(id -u)" RUNGROUP="$(id -g)" \
+GIT_HASH="296236c62bc08d2a8e5a272abfc4b3904d80b170" \
+    docker-compose \
+    up \
+    --build \
+    --detach
